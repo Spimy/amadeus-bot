@@ -7,7 +7,7 @@ import { CommandExecutor } from '../../lib/commands/CommandExecutor';
     name: 'kick',
     description: 'Kick people out like kicking students out of school! Wait... isn\'t that a good thing, to be kicked out?',
     usage: '<@user:MessageMentions|userID:string> <reason:string>',
-    category: 'Admin',
+    category: 'Moderation',
     permissions: ['ADMINISTRATOR', 'KICK_MEMBERS']
 })
 default class implements CommandExecutor {

@@ -7,7 +7,7 @@ import { CommandExecutor } from '../../lib/commands/CommandExecutor';
     name: 'ban',
     description: 'Pesky people doing pesky things? Unleash the ban hammer and forever forbid from entering this real ever again!',
     usage: '<@user:MessageMentions|userID:string> <reason:string> [days:number]',
-    category: 'Admin',
+    category: 'Moderation',
     permissions: ['ADMINISTRATOR', 'BAN_MEMBERS', 'KICK_MEMBERS']
 })
 default class implements CommandExecutor {

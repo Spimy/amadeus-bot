@@ -1,24 +1,20 @@
-
 import { client } from '../../index';
 import { Message } from 'discord.js';
 import { Command } from '../../lib/commands/Command';
 import { CommandExecutor } from '../../lib/commands/CommandExecutor';
 
 @Command({
-    name: 'unmute',
-    description: [
-        'You want to remove that ducktape you put on someone\'s mouth? Why though? :(',
-        'Make sure the user has been muted before using this command!'
-    ].join('\n'),
-    usage: '<@user:MessageMentions|userID:string> [reason:string]',
-    category: 'Admin',
+    name: 'mute',
+    description: 'You want to ducktape someone\'s mouth but could never do it before? Well, now you can!',
+    usage: '<@user:MessageMentions|userID:string> <reason:string>',
+    category: 'Moderation',
     permissions: ['ADMINISTRATOR', 'MANAGE_ROLES', 'MUTE_MEMBERS']
 })
 default class implements CommandExecutor {
 
     execute = async (message: Message, args: string[]): Promise<boolean> => {
 
-        if (args.length < 1) return false;
+        if (args.length < 2) return false;
 
         const member = message.mentions.members?.first() || message.guild?.members.cache.get(args[0].toString());
         if (!member) return false;
@@ -41,10 +37,8 @@ default class implements CommandExecutor {
             }).catch(console.error);
         }
 
-        if (!member.roles.cache.get(muteRole!.id)) return false;
-
-        member.roles.remove(muteRole!, reason).then(mutedMember => {
-            message.channel.send(`Unmute » \`${mutedMember.user.tag}\` has been unmuted by \`${message.author.tag}\`.`);
+        member.roles.add(muteRole!, reason).then(mutedMember => {
+            message.channel.send(`Mute » \`${mutedMember.user.tag}\` has been muted by \`${message.author.tag}\`. Reason: \`${reason}\``);
         });
 
         return true;

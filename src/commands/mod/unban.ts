@@ -10,7 +10,7 @@ import { CommandExecutor } from '../../lib/commands/CommandExecutor';
         'Make sure the user has been banned before using this command!'
     ].join('\n'),
     usage: '<userID:string> [reason:string]',
-    category: 'Admin',
+    category: 'Moderation',
     permissions: ['ADMINISTRATOR', 'BAN_MEMBERS', 'KICK_MEMBERS']
 })
 default class implements CommandExecutor {
