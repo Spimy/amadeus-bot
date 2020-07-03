@@ -1,0 +1,6 @@
+{
+    "version": 1,
+    "packageManager": "yarn",
+    "defaultProject": "amadeus",
+    "projectTemplate": "typescript"
+}
