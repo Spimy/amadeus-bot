@@ -13,6 +13,7 @@ export default class MuseClient extends Client {
     private utils: Utils = new Utils();
     private youtube: YouTube = new YouTube(process.env.YOUTUBE_API_KEY!);
     private config = config;
+    private urlRegex: RegExp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
 
     constructor(options?: ClientOptions) {
         super(options);
@@ -63,6 +64,14 @@ export default class MuseClient extends Client {
      */
     public get $youtube(): YouTube {
         return this.youtube;
+    }
+
+    /**
+     * Getter $urlRegex
+     * @return {RegExp}
+     */
+    public get $urlRegex(): RegExp {
+        return this.urlRegex;
     }
 
 }
