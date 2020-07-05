@@ -1,10 +1,8 @@
+import { Message, TextChannel } from 'discord.js';
 import { client } from '../../index';
-import { Music } from '../../lib/music/Music';
 import { Command } from '../../lib/commands/Command';
 import { CommandExecutor } from '../../lib/commands/CommandExecutor';
 
-import { Video } from 'popyt';
-import { Message, TextChannel, GuildMember } from 'discord.js';
 
 @Command({
     name: 'play',
@@ -14,7 +12,6 @@ import { Message, TextChannel, GuildMember } from 'discord.js';
 })
 default class implements CommandExecutor {
 
-    private readonly urlRegex = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
     private readonly videoRegex = /(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
     private readonly playlistRegex = /^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/;
 
@@ -27,7 +24,7 @@ default class implements CommandExecutor {
         const textChannel = <TextChannel>message.channel!;
         const voiceChannel = message.member.voice.channel;
 
-        if (this.urlRegex.test(args[0])) {
+        if (client.$urlRegex.test(args[0])) {
 
             if (this.videoRegex.test(args[0])) {
 

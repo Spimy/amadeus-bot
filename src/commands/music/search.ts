@@ -1,10 +1,8 @@
+import { Message, TextChannel, MessageEmbed } from 'discord.js';
 import { client } from '../../index';
-import { Music } from '../../lib/music/Music';
 import { Command } from '../../lib/commands/Command';
 import { CommandExecutor } from '../../lib/commands/CommandExecutor';
 
-import { Video } from 'popyt';
-import { Message, TextChannel, GuildMember, MessageEmbed } from 'discord.js';
 
 @Command({
     name: 'search',
@@ -15,12 +13,11 @@ import { Message, TextChannel, GuildMember, MessageEmbed } from 'discord.js';
 default class implements CommandExecutor {
 
     private readonly selectionTime = 10;
-    private readonly urlRegex = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
 
     execute = async (message: Message, args: string[]): Promise<boolean> => {
 
         if (args.length === 0 || !message.member?.voice.channel) return false;
-        if (this.urlRegex.test(args[0])) {
+        if (client.$urlRegex.test(args[0])) {
             return await client.$commands.get('play')?.executor.execute(message, args)!;
         }
 
