@@ -23,7 +23,7 @@ default class implements CommandExecutor {
             dynamic: false,
             format: 'png',
             size: 2048,
-        })!
+        })!;
 
         const embed = new MessageEmbed()
             .setColor('RANDOM')
